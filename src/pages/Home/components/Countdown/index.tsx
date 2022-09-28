@@ -40,7 +40,6 @@ export function Countdown() {
         )
 
         if (secondsDifference >= totalSeconds) {
-          console.log('cabo')
           finishCurrentCycle()
         } else {
           setSecondsPassed(secondsDifference)

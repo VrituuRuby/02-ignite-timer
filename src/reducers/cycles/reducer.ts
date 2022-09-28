@@ -32,8 +32,8 @@ export function cyclesReducer(state: CycleState, action: any) {
         draft.cycles.push(action.payload.newCycle)
         draft.activeCycleId = action.payload.newCycle.id
       })
+
     case ActionTypes.FINISH_CURRENT_CYCLE:
-      console.log('Reducer finished')
       return {
         ...state,
         cycles: state.cycles.map((cycle) => {
@@ -43,6 +43,7 @@ export function cyclesReducer(state: CycleState, action: any) {
         }),
         activeCycleId: null,
       }
+
     case ActionTypes.INTERRUPT_CURRENT_CYCLE:
       return {
         ...state,
