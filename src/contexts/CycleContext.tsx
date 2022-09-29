@@ -49,7 +49,7 @@ export function CyclesContextProvider({ children }: CycleContextProviderProps) {
     },
     () => {
       const storedCyclesDataAsJSON = localStorage.getItem(
-        '@ignite-timer:cycles-data',
+        '@ignite-timer:cycles-data1.0.0',
       )
 
       if (storedCyclesDataAsJSON) {
@@ -65,11 +65,11 @@ export function CyclesContextProvider({ children }: CycleContextProviderProps) {
 
   useEffect(() => {
     const stateJSON = JSON.stringify(cyclesState)
-    localStorage.setItem('@ignite-timer:cycles-data', stateJSON)
+    localStorage.setItem('@ignite-timer:cycles-data1.0.0', stateJSON)
   }, [cyclesState])
 
   const { cycles, activeCycleId } = cyclesState
-  const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
+  const activeCycle = cycles.find((cycle) => cycle?.id === activeCycleId)
   const [amountSecondsPassed, setAmountSecondsPassed] = useState(() => {
     const actualSecondsPassed = activeCycle
       ? differenceInSeconds(new Date(), new Date(activeCycle.startDate))
@@ -82,6 +82,7 @@ export function CyclesContextProvider({ children }: CycleContextProviderProps) {
   }
 
   function createNewCycle(data: NewCycleFormData) {
+    console.log('chamaddo função criar ciclo')
     const newCycle: Cycle = {
       id: String(new Date().getTime()),
       task: data.task,

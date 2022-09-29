@@ -7,6 +7,15 @@ import { FormContainer, TaskInput, TimerInput } from './styles'
 export function NewCycleForm() {
   const { activeCycle, cycles } = useContext(CyclesContext)
   const { register } = useFormContext()
+
+  const taskDataList = ['']
+
+  cycles.forEach((cycle) => {
+    if (taskDataList.indexOf(cycle.task) === -1) {
+      taskDataList.push(cycle.task)
+    }
+  })
+
   return (
     <FormContainer>
       <label htmlFor="task">Vou trabalhar em</label>
@@ -20,8 +29,8 @@ export function NewCycleForm() {
         {...register('task', { required: 'Informe uma tarefa' })}
       />
       <datalist id="task-suggestion">
-        {cycles.map((cycle) => (
-          <option key={cycle.id} value={cycle.task} />
+        {taskDataList.map((cycle) => (
+          <option key={cycle} value={cycle} />
         ))}
       </datalist>
 
